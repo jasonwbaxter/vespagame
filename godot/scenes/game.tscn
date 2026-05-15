@@ -1,0 +1,49 @@
+# Godot Scene File
+[gd_scene load_steps=6 format=3 uid="uid://d2t3uqzpbx5d0"]
+
+[ext_resource type="Script" path="res://scripts/game.gd"]
+[ext_resource type="Script" path="res://scripts/scooter.gd"]
+[ext_resource type="Script" path="res://scripts/ui_manager.gd"]
+
+[sub_resource type="ViewportTexture" id="1"]
+
+[node name="Game" type="Node2D"]
+script = SubResource( "res://scripts/game.gd" )
+
+[node name="Background" type="ColorRect" parent="."]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.2, 0.3, 0.4, 1.0)
+
+[node name="GameArea" type="Node2D" parent="."]
+
+[node name="Lane1" type="Line2D" parent="GameArea"]
+points = PackedVector2Array(80, 0, 80, 720)
+width = 2.0
+default_color = Color(0.5, 0.5, 0.5, 0.5)
+
+[node name="Lane2" type="Line2D" parent="GameArea"]
+points = PackedVector2Array(160, 0, 160, 720)
+width = 2.0
+default_color = Color(0.5, 0.5, 0.5, 0.5)
+
+[node name="Lane3" type="Line2D" parent="GameArea"]
+points = PackedVector2Array(240, 0, 240, 720)
+width = 2.0
+default_color = Color(0.5, 0.5, 0.5, 0.5)
+
+[node name="Lane4" type="Line2D" parent="GameArea"]
+points = PackedVector2Array(320, 0, 320, 720)
+width = 2.0
+default_color = Color(0.5, 0.5, 0.5, 0.5)
+
+[node name="Scooter" type="CharacterBody2D" parent="."]
+position = Vector2(160, 600)
+script = SubResource( "res://scripts/scooter.gd" )
+
+[node name="UIManager" type="CanvasLayer" parent="."]
+script = SubResource( "res://scripts/ui_manager.gd" )
+
+[connection signal="body_entered" from="Scooter" to="." method="_on_scooter_collision"]
